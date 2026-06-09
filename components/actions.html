@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" viewport="760x300" subtitle="Primary · Secondary · Ink · Ghost · Danger + sizes" name="Buttons & links" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--surface-card); }
+  .awm { display: flex; flex-direction: column; gap: 18px; }
+  .grp { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0; width: 100%; }
+</style>
+</head>
+<body class="awm">
+  <p class="cap">Variants</p>
+  <div class="grp">
+    <button class="awm-btn awm-btn--primary">Save changes</button>
+    <button class="awm-btn awm-btn--secondary">Cancel</button>
+    <button class="awm-btn awm-btn--ink">Publish</button>
+    <button class="awm-btn awm-btn--ghost">Skip</button>
+    <button class="awm-btn awm-btn--danger">Delete</button>
+    <button class="awm-btn awm-btn--secondary" disabled>Disabled</button>
+  </div>
+  <p class="cap">Sizes & icon</p>
+  <div class="grp">
+    <button class="awm-btn awm-btn--primary awm-btn--sm">Small</button>
+    <button class="awm-btn awm-btn--primary">Medium</button>
+    <button class="awm-btn awm-btn--primary awm-btn--lg">Large</button>
+    <button class="awm-btn awm-btn--secondary awm-icon-btn" aria-label="Add">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <button class="awm-btn awm-btn--primary">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Add tag
+    </button>
+  </div>
+  <p class="cap">Links</p>
+  <div class="grp" style="font-family:var(--font-sans);font-size:var(--text-sm);color:var(--text-body)">
+    Read the <a href="#" class="awm-link">full changelog</a> or browse <a href="#" class="awm-link awm-link--muted">archived posts</a>.
+  </div>
+</body>
+</html>

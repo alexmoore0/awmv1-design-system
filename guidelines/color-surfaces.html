@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x210" subtitle="Surface & text semantic aliases in use" name="Surfaces & text" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px 32px; background: var(--surface-page); font-family: var(--font-sans); }
+  .stack { display: flex; gap: 14px; }
+  .surf { flex: 1; padding: 14px; border: var(--rule); }
+  .page { background: var(--surface-page); } .card { background: var(--surface-card); } .sunken { background: var(--surface-sunken); } .inset { background: var(--surface-inset); }
+  .tag { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-subtle); display: block; margin-bottom: 10px; letter-spacing: 0.02em; }
+  .t-strong { color: var(--text-strong); font-weight: 600; font-size: var(--text-sm); }
+  .t-body { color: var(--text-body); font-size: var(--text-xs); }
+  .t-muted { color: var(--text-muted); font-size: var(--text-xs); }
+  .t-subtle { color: var(--text-subtle); font-size: var(--text-xs); }
+  .texts { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 14px; }
+</style>
+</head>
+<body>
+  <p class="cap">Surfaces stack page → card → sunken → inset</p>
+  <div class="stack">
+    <div class="surf page"><span class="tag">page</span><div class="texts"><span class="t-strong">Strong</span><span class="t-body">Body</span></div></div>
+    <div class="surf card"><span class="tag">card</span><div class="texts"><span class="t-strong">Strong</span><span class="t-muted">Muted</span></div></div>
+    <div class="surf sunken"><span class="tag">sunken</span><div class="texts"><span class="t-body">Body</span><span class="t-subtle">Subtle</span></div></div>
+    <div class="surf inset"><span class="tag">inset</span><div class="texts"><span class="t-muted">Muted</span><span class="t-subtle">Subtle</span></div></div>
+  </div>
+</body>
+</html>

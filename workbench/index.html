@@ -1,0 +1,210 @@
+<!-- @dsCard group="Brand" viewport="1440x900" subtitle="Live component explorer — variants, states, copyable markup" name="Workbench" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWMv1 · Workbench</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../components/components.css">
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--surface-page); color: var(--text-body); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .wb { display: grid; grid-template-columns: 236px 1fr 340px; height: 100vh; }
+
+  /* ---- Left: nav ---- */
+  .wb-nav { background: var(--surface-card); border-right: var(--rule); display: flex; flex-direction: column; overflow-y: auto; }
+  .wb-brand { display: flex; align-items: baseline; gap: 2px; padding: var(--space-5) var(--space-5) var(--space-4); border-bottom: var(--rule); position: sticky; top: 0; background: var(--surface-card); }
+  .wb-brand .bm { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.03em; color: var(--text-strong); }
+  .wb-brand .bm em { color: var(--accent); font-style: normal; }
+  .wb-brand .bv { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-faint); margin-left: 4px; }
+  .wb-brand .tag { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin-left: auto; align-self: center; }
+  .wb-group { padding: var(--space-5) var(--space-3) 0; }
+  .wb-group__label { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); padding: 0 var(--space-2) var(--space-2); }
+  .wb-item { display: block; width: 100%; text-align: left; appearance: none; background: transparent; border: 0; cursor: pointer; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; color: var(--text-muted); padding: var(--space-2); border-radius: var(--radius-sm); }
+  .wb-item:hover { background: var(--surface-hover); color: var(--text-strong); }
+  .wb-item.is-active { background: var(--accent-tint); color: var(--accent-text); }
+
+  /* ---- Center: canvas ---- */
+  .wb-stage { display: flex; flex-direction: column; min-width: 0; }
+  .wb-stage__bar { height: 52px; border-bottom: var(--rule); background: var(--surface-card); display: flex; align-items: center; gap: var(--space-4); padding: 0 var(--space-6); }
+  .wb-stage__title { font-size: var(--text-sm); font-weight: 600; color: var(--text-strong); }
+  .wb-stage__title small { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-subtle); margin-left: var(--space-2); font-weight: 400; }
+  .wb-bg { margin-left: auto; }
+  .wb-canvas { flex: 1; display: grid; place-items: center; padding: var(--space-12); overflow: auto; background-color: var(--surface-page);
+    background-image: radial-gradient(var(--neutral-200) 1px, transparent 1px); background-size: 18px 18px; }
+  .wb-canvas.is-card { background-image: none; background-color: var(--surface-sunken); }
+  .wb-canvas.is-ink  { background-image: none; background-color: var(--neutral-900); }
+  .wb-mount { display: inline-flex; }
+
+  /* ---- Right: addons ---- */
+  .wb-panel { border-left: var(--rule); background: var(--surface-card); display: flex; flex-direction: column; min-width: 0; }
+  .wb-panel__head { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); padding: var(--space-4) var(--space-5) var(--space-3); border-bottom: var(--rule); display: flex; align-items: center; justify-content: space-between; }
+  .wb-controls { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); overflow-y: auto; flex: 1; }
+  .wb-ctrl { display: flex; flex-direction: column; gap: var(--space-2); }
+  .wb-ctrl__row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .wb-ctrl__key { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-body); }
+  .wb-ctrl__type { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-faint); }
+
+  /* code */
+  .wb-code { border-top: var(--rule); background: var(--neutral-900); color: var(--neutral-100); }
+  .wb-code__head { color: var(--neutral-400); }
+  .wb-code pre { margin: 0; padding: var(--space-4) var(--space-5); font-family: var(--font-mono); font-size: var(--text-xs); line-height: var(--leading-normal); color: var(--neutral-200); overflow-x: auto; max-height: 240px; white-space: pre; }
+  .wb-code .tok-tag { color: oklch(0.78 0.11 230); }
+  .wb-code .tok-attr { color: oklch(0.82 0.10 150); }
+  .wb-code .tok-str { color: oklch(0.86 0.09 80); }
+  .wb-copy { appearance: none; background: transparent; border: var(--border-thin) solid var(--neutral-700); color: var(--neutral-300); font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; padding: 3px var(--space-2); border-radius: var(--radius-sm); cursor: pointer; }
+  .wb-copy:hover { border-color: var(--neutral-500); color: var(--neutral-0); }
+  .wb-copy.is-done { color: var(--green-500); border-color: var(--green-500); }
+
+  @media (max-width: 1040px) { .wb { grid-template-columns: 200px 1fr; } .wb-panel { display: none; } }
+</style>
+</head>
+<body>
+<div class="wb">
+  <!-- NAV -->
+  <nav class="wb-nav">
+    <div class="wb-brand"><span class="bm">AW<em>M</em></span><span class="bv">v1</span><span class="tag">Workbench</span></div>
+    <div id="wb-nav-list"></div>
+  </nav>
+
+  <!-- STAGE -->
+  <div class="wb-stage">
+    <div class="wb-stage__bar">
+      <div class="wb-stage__title" id="wb-title">Button <small id="wb-group">Actions</small></div>
+      <div class="wb-bg awm-segmented">
+        <button class="awm-segmented__item is-active" data-bg="grid">Grid</button>
+        <button class="awm-segmented__item" data-bg="card">Sunken</button>
+        <button class="awm-segmented__item" data-bg="ink">Ink</button>
+      </div>
+    </div>
+    <div class="wb-canvas" id="wb-canvas"><div class="wb-mount" id="wb-mount"></div></div>
+  </div>
+
+  <!-- PANEL -->
+  <aside class="wb-panel">
+    <div class="wb-panel__head"><span>Controls</span><button class="wb-item" id="wb-reset" style="width:auto;padding:2px 6px;color:var(--text-subtle)">Reset</button></div>
+    <div class="wb-controls" id="wb-controls"></div>
+    <div class="wb-code">
+      <div class="wb-panel__head wb-code__head"><span>Markup</span><button class="wb-copy" id="wb-copy">Copy</button></div>
+      <pre id="wb-code"></pre>
+    </div>
+  </aside>
+</div>
+
+<script src="stories.js"></script>
+<script>
+(function () {
+  const stories = window.AWM_STORIES;
+  const byId = Object.fromEntries(stories.map(s => [s.id, s]));
+  let currentId = stories[0].id;
+  let args = {};
+
+  const el = (id) => document.getElementById(id);
+
+  /* ---- build nav ---- */
+  function buildNav() {
+    const groups = {};
+    stories.forEach(s => { (groups[s.group] = groups[s.group] || []).push(s); });
+    const list = el('wb-nav-list');
+    list.innerHTML = Object.entries(groups).map(([g, items]) => `
+      <div class="wb-group">
+        <div class="wb-group__label">${g}</div>
+        ${items.map(s => `<button class="wb-item" data-id="${s.id}">${s.name}</button>`).join('')}
+      </div>`).join('');
+    list.querySelectorAll('.wb-item').forEach(b => b.addEventListener('click', () => select(b.dataset.id)));
+  }
+
+  /* ---- defaults ---- */
+  function defaultsFor(story) {
+    const o = {};
+    for (const [k, def] of Object.entries(story.knobs)) o[k] = def.default;
+    return o;
+  }
+
+  /* ---- build controls ---- */
+  function buildControls() {
+    const story = byId[currentId];
+    const wrap = el('wb-controls');
+    wrap.innerHTML = '';
+    for (const [key, def] of Object.entries(story.knobs)) {
+      const ctrl = document.createElement('div');
+      ctrl.className = 'wb-ctrl';
+      const row = `<div class="wb-ctrl__row"><span class="wb-ctrl__key">${key}</span><span class="wb-ctrl__type">${def.type}</span></div>`;
+      let field = '';
+      if (def.type === 'text') {
+        field = `<input class="awm-input awm-btn--sm" style="height:var(--control-sm)" data-knob="${key}" value="${(args[key] ?? '').toString().replace(/"/g,'&quot;')}">`;
+      } else if (def.type === 'select') {
+        field = `<select class="awm-select" style="height:var(--control-sm)" data-knob="${key}">${def.options.map(o => `<option${o === args[key] ? ' selected' : ''}>${o}</option>`).join('')}</select>`;
+      } else if (def.type === 'boolean') {
+        field = `<label class="awm-switch" style="margin-top:2px"><input type="checkbox" data-knob="${key}"${args[key] ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span></label>`;
+      } else if (def.type === 'number') {
+        field = `<input class="awm-input" type="number" style="height:var(--control-sm)" data-knob="${key}" value="${args[key]}">`;
+      }
+      ctrl.innerHTML = row + field;
+      wrap.appendChild(ctrl);
+    }
+    wrap.querySelectorAll('[data-knob]').forEach(inp => {
+      const ev = (inp.type === 'checkbox' || inp.tagName === 'SELECT') ? 'change' : 'input';
+      inp.addEventListener(ev, () => {
+        const k = inp.dataset.knob;
+        args[k] = inp.type === 'checkbox' ? inp.checked : (inp.type === 'number' ? Number(inp.value) : inp.value);
+        renderPreview();
+      });
+    });
+  }
+
+  /* ---- naive html highlighter (order matters: escape → attrs → tags,
+     so the attr pass never re-matches the class="" on spans we insert) ---- */
+  function highlight(s) {
+    return s
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/([\w-]+)=(")(.*?)(")/g, '<span class="tok-attr">$1</span>=<span class="tok-str">"$3"</span>')
+      .replace(/(&lt;\/?)([\w-]+)/g, '$1<span class="tok-tag">$2</span>');
+  }
+
+  function renderPreview() {
+    const story = byId[currentId];
+    const html = story.render(args);
+    el('wb-mount').innerHTML = html;
+    // pretty: collapse leading indentation already present in template strings
+    el('wb-code').innerHTML = highlight(html.trim());
+  }
+
+  function select(id) {
+    currentId = id;
+    args = defaultsFor(byId[id]);
+    document.querySelectorAll('.wb-item').forEach(b => b.classList.toggle('is-active', b.dataset.id === id));
+    el('wb-title').firstChild.textContent = byId[id].name + ' ';
+    el('wb-group').textContent = byId[id].group;
+    buildControls();
+    renderPreview();
+  }
+
+  /* ---- background toggle ---- */
+  document.querySelectorAll('.wb-bg .awm-segmented__item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.wb-bg .awm-segmented__item').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const c = el('wb-canvas');
+      c.classList.remove('is-card', 'is-ink');
+      if (btn.dataset.bg === 'card') c.classList.add('is-card');
+      if (btn.dataset.bg === 'ink') c.classList.add('is-ink');
+    });
+  });
+
+  el('wb-reset').addEventListener('click', () => { args = defaultsFor(byId[currentId]); buildControls(); renderPreview(); });
+
+  el('wb-copy').addEventListener('click', () => {
+    const txt = byId[currentId].render(args).trim();
+    navigator.clipboard?.writeText(txt);
+    const b = el('wb-copy'); b.textContent = 'Copied'; b.classList.add('is-done');
+    setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('is-done'); }, 1400);
+  });
+
+  buildNav();
+  select(currentId);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!-- @dsCard group="Components" viewport="760x440" subtitle="Inputs, select, textarea, checkbox, radio, switch" name="Form controls" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--surface-card); }
+  .awm { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; max-width: 700px; }
+  .col { display: flex; flex-direction: column; gap: 16px; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0; }
+  .checks { display: flex; flex-direction: column; gap: 12px; }
+</style>
+</head>
+<body class="awm">
+  <div class="col">
+    <div class="awm-field">
+      <label class="awm-label" for="e">Email address <span class="awm-req">*</span></label>
+      <input class="awm-input" id="e" type="email" placeholder="you@example.com" value="alex@awm.studio">
+      <span class="awm-hint">We'll only use this to send build notifications.</span>
+    </div>
+    <div class="awm-field">
+      <label class="awm-label" for="u">Username</label>
+      <div class="awm-input-group">
+        <span class="awm-affix">awm.studio/</span>
+        <input class="awm-input" id="u" type="text" placeholder="handle">
+      </div>
+    </div>
+    <div class="awm-field">
+      <label class="awm-label" for="p">Password</label>
+      <input class="awm-input is-error" id="p" type="password" value="123">
+      <span class="awm-error-text">Must be at least 8 characters.</span>
+    </div>
+  </div>
+  <div class="col">
+    <div class="awm-field">
+      <label class="awm-label" for="r">Visibility</label>
+      <select class="awm-select" id="r"><option>Public</option><option>Unlisted</option><option>Private</option></select>
+    </div>
+    <div class="awm-field">
+      <label class="awm-label" for="t">Notes</label>
+      <textarea class="awm-textarea" id="t" placeholder="Optional release notes…"></textarea>
+    </div>
+    <div>
+      <p class="cap" style="margin-bottom:12px">Toggles</p>
+      <div class="checks">
+        <label class="awm-check"><input type="checkbox" checked><span class="awm-box"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Email me on deploy</label>
+        <label class="awm-check awm-check--radio"><input type="radio" name="x" checked><span class="awm-box"><span class="awm-dot"></span></span> Production</label>
+        <label class="awm-check awm-check--radio"><input type="radio" name="x"><span class="awm-box"><span class="awm-dot"></span></span> Preview</label>
+        <label class="awm-switch"><input type="checkbox" checked><span class="awm-track"><span class="awm-thumb"></span></span> Auto-publish</label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

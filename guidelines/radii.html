@@ -1,0 +1,27 @@
+<!-- @dsCard group="Spacing" viewport="700x180" subtitle="Sharp by design — radii top out at 4px" name="Corner radii" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 26px 32px; background: var(--surface-card); font-family: var(--font-mono); }
+  .row { display: flex; gap: 24px; align-items: flex-start; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .box { width: 72px; height: 56px; background: var(--surface-inset); border: var(--border-thick) solid var(--border-ink); }
+  .pill { width: 72px; height: 36px; border-radius: var(--radius-pill); background: var(--accent-tint); border: var(--border-thin) solid var(--accent); }
+  .lab { font-size: var(--text-2xs); color: var(--text-subtle); }
+  .cap { font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 18px; }
+</style>
+</head>
+<body>
+  <p class="cap">Radii · square is the default</p>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-0)"></div><span class="lab">0 · default</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="lab">sm · 2</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><span class="lab">md · 3</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="lab">lg · 4</span></div>
+    <div class="item"><div class="pill"></div><span class="lab">pill · tags only</span></div>
+  </div>
+</body>
+</html>

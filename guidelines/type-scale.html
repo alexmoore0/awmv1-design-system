@@ -1,0 +1,27 @@
+<!-- @dsCard group="Type" viewport="700x250" subtitle="Modular size scale, serif display → mono caption" name="Type scale" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px 32px; background: var(--surface-card); color: var(--text-strong); font-family: var(--font-sans); }
+  .line { display: flex; align-items: baseline; gap: 18px; padding: 5px 0; border-bottom: var(--rule); }
+  .line:last-child { border-bottom: 0; }
+  .spec { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-subtle); width: 96px; flex: none; letter-spacing: 0.03em; }
+  .sample { line-height: 1.15; letter-spacing: var(--tracking-tight); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .s1 { font-family: var(--font-serif); font-size: var(--text-4xl); }
+  .s2 { font-family: var(--font-serif); font-size: var(--text-2xl); }
+  .s3 { font-size: var(--text-lg); font-weight: 600; letter-spacing: var(--tracking-snug); }
+  .s4 { font-size: var(--text-base); }
+  .s5 { font-size: var(--text-sm); color: var(--text-body); }
+</style>
+</head>
+<body>
+  <div class="line"><span class="spec">4xl · 48</span><span class="sample s1">Display headline</span></div>
+  <div class="line"><span class="spec">2xl · 30</span><span class="sample s2">Section title</span></div>
+  <div class="line"><span class="spec">lg · 20 · 600</span><span class="sample s3">Subhead / card title</span></div>
+  <div class="line"><span class="spec">base · 16</span><span class="sample s4">Body copy — the default reading size for app and prose.</span></div>
+  <div class="line"><span class="spec">sm · 14</span><span class="sample s5">Secondary text, captions, dense UI</span></div>
+</body>
+</html>

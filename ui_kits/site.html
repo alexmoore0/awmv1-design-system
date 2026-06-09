@@ -1,0 +1,140 @@
+<!-- @dsCard group="Brand" viewport="1280x1600" subtitle="Editorial personal site + writing index" name="UI Kit · Site" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWMv1 · Editorial site</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../components/components.css">
+<style>
+  body { margin: 0; background: var(--surface-page); color: var(--text-body); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--space-6); }
+
+  /* Top bar */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: var(--space-6) 0; border-bottom: var(--rule); }
+  .nav .mark { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.02em; color: var(--text-strong); text-decoration: none; }
+  .nav .mark em { color: var(--accent); font-style: normal; }
+  .nav .links { display: flex; gap: var(--space-6); }
+  .nav a.l { font-size: var(--text-sm); font-weight: 500; color: var(--text-muted); text-decoration: none; }
+  .nav a.l:hover { color: var(--text-strong); }
+  .nav a.l.is-active { color: var(--text-strong); }
+
+  /* Hero */
+  .hero { padding: var(--space-16) 0 var(--space-12); border-bottom: var(--rule); }
+  .hero .eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--accent-text); margin: 0 0 var(--space-5); }
+  .hero h1 { font-family: var(--font-serif); font-size: var(--text-5xl); font-weight: 500; line-height: 1.05; letter-spacing: var(--tracking-tight); color: var(--text-strong); margin: 0 0 var(--space-6); text-wrap: balance; }
+  .hero p { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-muted); margin: 0 0 var(--space-8); max-width: 56ch; }
+  .hero .cta { display: flex; gap: var(--space-5); align-items: center; flex-wrap: wrap; }
+  .hero .cta .awm-link { white-space: nowrap; }
+
+  /* Section header */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; padding: var(--space-12) 0 var(--space-5); }
+  .sec-head h2 { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0; font-weight: 500; }
+  .sec-head a { font-size: var(--text-sm); }
+
+  /* Writing list */
+  .posts { display: flex; flex-direction: column; }
+  .post { display: grid; grid-template-columns: 96px 1fr; gap: var(--space-6); padding: var(--space-6) 0; border-bottom: var(--rule); text-decoration: none; align-items: baseline; transition: padding-left var(--duration-base) var(--ease-out); }
+  .post:hover { padding-left: var(--space-3); }
+  .post:first-child { border-top: var(--rule); }
+  .post .date { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-subtle); padding-top: 4px; }
+  .post h3 { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 500; letter-spacing: var(--tracking-snug); color: var(--text-strong); margin: 0 0 var(--space-2); line-height: 1.15; }
+  .post p { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--text-muted); margin: 0 0 var(--space-3); max-width: 54ch; }
+  .post .meta { display: flex; align-items: center; gap: var(--space-2); }
+  .post .read { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-faint); margin-left: var(--space-1); }
+
+  /* Projects strip */
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+  /* Footer */
+  footer { margin-top: var(--space-16); border-top: var(--border-thick) solid var(--border-ink); padding: var(--space-8) 0 var(--space-16); display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-6); }
+  footer .col h4 { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 var(--space-3); font-weight: 500; }
+  footer .col a { display: block; font-size: var(--text-sm); color: var(--text-body); text-decoration: none; margin-bottom: var(--space-2); }
+  footer .col a:hover { color: var(--accent-text); }
+  footer .sign { font-family: var(--font-serif); font-size: var(--text-lg); color: var(--text-strong); }
+  footer .sign small { display: block; font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-faint); margin-top: var(--space-2); letter-spacing: 0.03em; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#" class="mark">Alex&nbsp;<em>Worth</em></a>
+      <div class="links">
+        <a href="#" class="l is-active">Writing</a>
+        <a href="#" class="l">Projects</a>
+        <a href="#" class="l">About</a>
+        <a href="#" class="l">Notes</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Designer · Engineer · Light</p>
+      <h1>I build quiet tools and write about how they should feel.</h1>
+      <p>Independent designer-engineer working at the seam of editorial craft and software. Currently building developer tools and writing essays on interface restraint.</p>
+      <div class="cta">
+        <button class="awm-btn awm-btn--ink">Read the latest</button>
+        <a href="#" class="awm-link">Subscribe to the newsletter</a>
+      </div>
+    </header>
+
+    <div class="sec-head">
+      <h2>Recent writing</h2>
+      <a href="#" class="awm-link awm-link--muted">All posts →</a>
+    </div>
+    <div class="posts">
+      <a href="#" class="post">
+        <span class="date">MAR 2026</span>
+        <div>
+          <h3>On quiet interfaces</h3>
+          <p>A short argument for tools that recede — letting the work, not the chrome, hold attention.</p>
+          <div class="meta"><span class="awm-tag awm-tag--accent">design</span><span class="awm-tag">essay</span><span class="read">· 12 min</span></div>
+        </div>
+      </a>
+      <a href="#" class="post">
+        <span class="date">FEB 2026</span>
+        <div>
+          <h3>The case for hairline rules</h3>
+          <p>Why a single pixel border often does the job three shadows are fighting over.</p>
+          <div class="meta"><span class="awm-tag">css</span><span class="awm-tag">craft</span><span class="read">· 8 min</span></div>
+        </div>
+      </a>
+      <a href="#" class="post">
+        <span class="date">JAN 2026</span>
+        <div>
+          <h3>Type as the whole brand</h3>
+          <p>Building an identity from three typefaces and nothing else — a working note from AWMv1.</p>
+          <div class="meta"><span class="awm-tag">typography</span><span class="awm-tag awm-tag--accent">systems</span><span class="read">· 15 min</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="sec-head">
+      <h2>Selected projects</h2>
+      <a href="#" class="awm-link awm-link--muted">All projects →</a>
+    </div>
+    <div class="proj-grid">
+      <div class="awm-card awm-card--hover">
+        <p class="awm-card__eyebrow">Open source · 2.4k ★</p>
+        <h3 class="awm-card__title">deploy-pipeline</h3>
+        <p class="awm-card__body">A minimal CI runner with preview URLs on every pull request.</p>
+        <div style="margin-top:16px;display:flex;gap:8px"><span class="awm-badge awm-badge--accent">typescript</span><span class="awm-badge">cli</span></div>
+      </div>
+      <div class="awm-card awm-card--hover">
+        <p class="awm-card__eyebrow">Product · live</p>
+        <h3 class="awm-card__title">AWMv1</h3>
+        <p class="awm-card__body">The editorial-technical design system this very site is built on.</p>
+        <div style="margin-top:16px;display:flex;gap:8px"><span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> shipping</span><span class="awm-badge">css</span></div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="sign">Alex Worth<small>AWM.STUDIO · EST. 2026</small></div>
+      <div style="display:flex;gap:var(--space-12)">
+        <div class="col"><h4>Elsewhere</h4><a href="#">GitHub</a><a href="#">Mastodon</a><a href="#">RSS</a></div>
+        <div class="col"><h4>Site</h4><a href="#">Writing</a><a href="#">Projects</a><a href="#">Colophon</a></div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

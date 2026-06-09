@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x200" subtitle="Success / warning / danger — matched chroma" name="Semantic status" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 26px 32px; background: var(--surface-card); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .col { border: var(--rule); }
+  .solid { height: 56px; display: flex; align-items: flex-end; padding: 7px 10px; }
+  .solid span { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--neutral-0); }
+  .tintrow { display: flex; align-items: center; gap: 8px; padding: 10px; }
+  .chip { font-family: var(--font-mono); font-size: var(--text-2xs); padding: 3px 8px; border: var(--border-thin) solid; }
+  .s-solid { background: var(--success); } .w-solid { background: var(--warning); } .d-solid { background: var(--danger); }
+  .s-chip { background: var(--success-tint); color: var(--success); border-color: var(--green-100); }
+  .w-chip { background: var(--warning-tint); color: var(--warning); border-color: var(--amber-100); }
+  .d-chip { background: var(--danger-tint); color: var(--danger); border-color: var(--red-100); }
+  .lab { font-size: var(--text-xs); color: var(--text-muted); }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 14px; }
+</style>
+</head>
+<body>
+  <p class="cap">Status · solid for icons/text, tint for surfaces</p>
+  <div class="grid">
+    <div class="col"><div class="solid s-solid"><span>success</span></div><div class="tintrow"><span class="chip s-chip">Saved</span><span class="lab">green</span></div></div>
+    <div class="col"><div class="solid w-solid"><span>warning</span></div><div class="tintrow"><span class="chip w-chip">Pending</span><span class="lab">amber</span></div></div>
+    <div class="col"><div class="solid d-solid"><span>danger</span></div><div class="tintrow"><span class="chip d-chip">Failed</span><span class="lab">red</span></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* AWMv1 — Elevation
+   This system favors borders over shadows. Shadows are cool-tinted, tight, and rare —
+   reserved for things that genuinely float (popovers, modals, toasts). */
+
+:root {
+  --shadow-xs: 0 1px 0 0 oklch(0.205 0.012 256 / 0.04);
+  --shadow-sm: 0 1px 2px 0 oklch(0.205 0.012 256 / 0.06),
+               0 1px 1px -1px oklch(0.205 0.012 256 / 0.04);
+  --shadow-md: 0 4px 12px -2px oklch(0.205 0.012 256 / 0.10),
+               0 2px 4px -2px oklch(0.205 0.012 256 / 0.06);
+  --shadow-lg: 0 12px 32px -8px oklch(0.205 0.012 256 / 0.16),
+               0 4px 8px -4px oklch(0.205 0.012 256 / 0.08);
+  --shadow-focus: 0 0 0 3px var(--focus-ring);
+
+  /* Hairline rule used as the primary separator throughout the system */
+  --rule: var(--border-thin) solid var(--border-default);
+}

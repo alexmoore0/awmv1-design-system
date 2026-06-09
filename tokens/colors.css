@@ -1,0 +1,93 @@
+/* AWMv1 — Color
+   Cool-neutral ink on near-white paper, one confident blue accent, restrained semantics.
+   Base palette = raw values. Semantic aliases = how to actually use them.
+   Defined in oklch for perceptual evenness. */
+
+:root {
+  /* ---- Neutrals (cool-tinted grey ramp) ---- */
+  --neutral-0:   oklch(1 0 0);
+  --neutral-50:  oklch(0.986 0.002 256);
+  --neutral-100: oklch(0.968 0.003 256);
+  --neutral-150: oklch(0.949 0.004 256);
+  --neutral-200: oklch(0.926 0.004 256);
+  --neutral-300: oklch(0.873 0.006 256);
+  --neutral-400: oklch(0.715 0.010 256);
+  --neutral-500: oklch(0.565 0.012 256);
+  --neutral-600: oklch(0.452 0.013 256);
+  --neutral-700: oklch(0.372 0.013 256);
+  --neutral-800: oklch(0.285 0.012 256);
+  --neutral-900: oklch(0.205 0.012 256);
+
+  /* ---- Paper (background warm-neutral) ---- */
+  --paper:       oklch(0.993 0.002 95);
+
+  /* ---- Accent: AWM Blue ---- */
+  --blue-50:   oklch(0.972 0.018 256);
+  --blue-100:  oklch(0.932 0.040 256);
+  --blue-200:  oklch(0.866 0.072 256);
+  --blue-400:  oklch(0.640 0.150 256);
+  --blue-500:  oklch(0.552 0.172 256);
+  --blue-600:  oklch(0.488 0.165 256);
+  --blue-700:  oklch(0.420 0.145 256);
+
+  /* ---- Semantics (matched chroma, varied hue) ---- */
+  --green-50:  oklch(0.962 0.024 152);
+  --green-100: oklch(0.918 0.050 152);
+  --green-500: oklch(0.602 0.140 152);
+  --green-600: oklch(0.528 0.130 152);
+
+  --amber-50:  oklch(0.972 0.028 80);
+  --amber-100: oklch(0.930 0.058 80);
+  --amber-500: oklch(0.760 0.140 75);
+  --amber-600: oklch(0.660 0.135 65);
+
+  --red-50:    oklch(0.966 0.018 25);
+  --red-100:   oklch(0.922 0.040 25);
+  --red-500:   oklch(0.580 0.184 27);
+  --red-600:   oklch(0.512 0.176 27);
+
+  /* ============ SEMANTIC ALIASES ============ */
+
+  /* Surfaces */
+  --surface-page:    var(--paper);
+  --surface-card:    var(--neutral-0);
+  --surface-sunken:  var(--neutral-50);
+  --surface-inset:   var(--neutral-100);
+  --surface-hover:   var(--neutral-100);
+  --surface-invert:  var(--neutral-900);
+
+  /* Text */
+  --text-strong:   var(--neutral-900);
+  --text-body:     var(--neutral-800);
+  --text-muted:    var(--neutral-600);
+  --text-subtle:   var(--neutral-500);
+  --text-faint:    var(--neutral-400);
+  --text-on-accent: var(--neutral-0);
+  --text-on-invert: var(--neutral-100);
+
+  /* Borders */
+  --border-subtle:  var(--neutral-150);
+  --border-default: var(--neutral-200);
+  --border-strong:  var(--neutral-300);
+  --border-ink:     var(--neutral-900);
+
+  /* Accent */
+  --accent:        var(--blue-500);
+  --accent-hover:  var(--blue-600);
+  --accent-active: var(--blue-700);
+  --accent-tint:   var(--blue-50);
+  --accent-tint-2: var(--blue-100);
+  --accent-text:   var(--blue-700);
+
+  /* Status */
+  --success:      var(--green-600);
+  --success-tint: var(--green-50);
+  --warning:      var(--amber-600);
+  --warning-tint: var(--amber-50);
+  --danger:       var(--red-500);
+  --danger-hover: var(--red-600);
+  --danger-tint:  var(--red-50);
+
+  /* Focus */
+  --focus-ring: oklch(0.552 0.172 256 / 0.45);
+}

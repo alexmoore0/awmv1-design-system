@@ -1,0 +1,28 @@
+{
+  "name": "awmv1-design-system",
+  "version": "1.0.0",
+  "description": "AWMv1 — an editorial-technical design system: tokens, a framework-free component library, UI kits, a live workbench, and Storybook.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": ["design-system", "css", "design-tokens", "storybook", "editorial"],
+  "files": [
+    "styles.css",
+    "tokens",
+    "components/components.css"
+  ],
+  "exports": {
+    ".": "./styles.css",
+    "./tokens": "./styles.css",
+    "./components": "./components/components.css"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/html-vite": "^8.6.0",
+    "storybook": "^8.6.0",
+    "vite": "^5.4.0"
+  }
+}

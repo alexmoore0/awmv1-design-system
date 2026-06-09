@@ -1,0 +1,36 @@
+<!-- @dsCard group="Colors" viewport="700x180" subtitle="Cool-tinted grey ramp, 0 → 900" name="Neutrals" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 26px 32px; background: var(--surface-card); font-family: var(--font-sans); }
+  .row { display: flex; gap: 0; border: var(--rule); }
+  .sw { flex: 1; height: 84px; display: flex; align-items: flex-end; padding: 8px 8px; }
+  .sw span { font-family: var(--font-mono); font-size: var(--text-2xs); }
+  .light span { color: var(--text-muted); } .dark span { color: var(--neutral-0); }
+  .n0 { background: var(--neutral-0); } .n50 { background: var(--neutral-50); } .n100 { background: var(--neutral-100); }
+  .n200 { background: var(--neutral-200); } .n300 { background: var(--neutral-300); } .n400 { background: var(--neutral-400); }
+  .n500 { background: var(--neutral-500); } .n600 { background: var(--neutral-600); } .n700 { background: var(--neutral-700); }
+  .n800 { background: var(--neutral-800); } .n900 { background: var(--neutral-900); }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 14px; }
+</style>
+</head>
+<body>
+  <p class="cap">Neutrals · ink is 900, never pure black</p>
+  <div class="row">
+    <div class="sw n0 light"><span>0</span></div>
+    <div class="sw n50 light"><span>50</span></div>
+    <div class="sw n100 light"><span>100</span></div>
+    <div class="sw n200 light"><span>200</span></div>
+    <div class="sw n300 light"><span>300</span></div>
+    <div class="sw n400 light"><span>400</span></div>
+    <div class="sw n500 dark"><span>500</span></div>
+    <div class="sw n600 dark"><span>600</span></div>
+    <div class="sw n700 dark"><span>700</span></div>
+    <div class="sw n800 dark"><span>800</span></div>
+    <div class="sw n900 dark"><span>900</span></div>
+  </div>
+</body>
+</html>

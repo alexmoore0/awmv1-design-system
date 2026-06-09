@@ -1,0 +1,39 @@
+<!-- @dsCard group="Components" viewport="760x260" subtitle="Underline tabs + segmented control" name="Navigation & tabs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--surface-card); }
+  .wrap { display: flex; flex-direction: column; gap: 26px; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 12px; }
+  .panel { padding: 18px 2px; font-family: var(--font-sans); font-size: var(--text-sm); color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <p class="cap">Underline tabs</p>
+      <div class="awm-tabs">
+        <div class="awm-tabs__list">
+          <button class="awm-tab is-active">Overview</button>
+          <button class="awm-tab">Activity</button>
+          <button class="awm-tab">Settings</button>
+          <button class="awm-tab">Members</button>
+        </div>
+        <div class="panel">The selected tab is marked by a 2px accent rule that sits on the shared hairline baseline.</div>
+      </div>
+    </div>
+    <div>
+      <p class="cap">Segmented control</p>
+      <div class="awm-segmented">
+        <button class="awm-segmented__item is-active">Day</button>
+        <button class="awm-segmented__item">Week</button>
+        <button class="awm-segmented__item">Month</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

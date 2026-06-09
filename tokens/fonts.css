@@ -1,0 +1,5 @@
+/* AWMv1 — Webfonts
+   Primary type system: Newsreader (editorial serif), Hanken Grotesk (UI grotesque),
+   JetBrains Mono (technical mono). Loaded from Google Fonts.
+   If you self-host, replace this @import with local @font-face rules. */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap');

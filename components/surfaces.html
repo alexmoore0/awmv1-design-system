@@ -1,0 +1,60 @@
+<!-- @dsCard group="Components" viewport="760x360" subtitle="Cards, badges, tags" name="Surfaces, badges & tags" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--surface-page); }
+  .wrap { display: flex; flex-direction: column; gap: 20px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grp { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0; width: 100%; }
+  .card-foot { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cards">
+      <div class="awm-card awm-card--hover">
+        <p class="awm-card__eyebrow">Project · v1.4.0</p>
+        <h3 class="awm-card__title">Deploy pipeline</h3>
+        <p class="awm-card__body">Continuous builds from main, with preview URLs on every pull request.</p>
+        <div class="card-foot">
+          <span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> Live</span>
+          <span class="awm-badge">edge</span>
+        </div>
+      </div>
+      <div class="awm-card">
+        <p class="awm-card__eyebrow">Essay · 12 min read</p>
+        <h3 class="awm-card__title awm-card__title--serif">On quiet interfaces</h3>
+        <p class="awm-card__body">A short argument for tools that recede — letting the work, not the chrome, hold attention.</p>
+        <div class="card-foot">
+          <span class="awm-tag awm-tag--accent">design</span>
+          <span class="awm-tag">writing</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="cap" style="margin-bottom:12px">Badges</p>
+      <div class="grp">
+        <span class="awm-badge">default</span>
+        <span class="awm-badge awm-badge--accent">accent</span>
+        <span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> success</span>
+        <span class="awm-badge awm-badge--warning">warning</span>
+        <span class="awm-badge awm-badge--danger">danger</span>
+        <span class="awm-badge awm-badge--ink">ink</span>
+      </div>
+    </div>
+    <div>
+      <p class="cap" style="margin-bottom:12px">Tags · removable</p>
+      <div class="grp">
+        <span class="awm-tag">typescript</span>
+        <span class="awm-tag awm-tag--accent">featured <span class="awm-tag__x"><svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span></span>
+        <span class="awm-tag">design systems <span class="awm-tag__x"><svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x180" subtitle="AWM Blue — the single accent" name="Accent / AWM Blue" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 26px 32px; background: var(--surface-card); font-family: var(--font-sans); }
+  .row { display: flex; gap: 0; border: var(--rule); }
+  .sw { flex: 1; height: 84px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; }
+  .sw span { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.02em; }
+  .b50 { background: var(--blue-50); } .b100 { background: var(--blue-100); } .b200 { background: var(--blue-200); }
+  .b400 { background: var(--blue-400); } .b500 { background: var(--blue-500); } .b600 { background: var(--blue-600); } .b700 { background: var(--blue-700); }
+  .light span { color: var(--text-muted); } .dark span { color: var(--neutral-0); }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 14px; }
+</style>
+</head>
+<body>
+  <p class="cap">Accent · use for the single most important action</p>
+  <div class="row">
+    <div class="sw b50 light"><span>50</span></div>
+    <div class="sw b100 light"><span>100</span></div>
+    <div class="sw b200 light"><span>200</span></div>
+    <div class="sw b400 dark"><span>400</span></div>
+    <div class="sw b500 dark"><span>500 ·</span></div>
+    <div class="sw b600 dark"><span>600</span></div>
+    <div class="sw b700 dark"><span>700</span></div>
+  </div>
+</body>
+</html>

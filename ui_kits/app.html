@@ -1,0 +1,168 @@
+<!-- @dsCard group="Brand" viewport="1440x960" subtitle="SaaS app surface — sidebar, projects, deploy detail" name="UI Kit · App" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWMv1 · App surface</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../components/components.css">
+<style>
+  body { margin: 0; background: var(--surface-page); color: var(--text-body); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .app { display: grid; grid-template-columns: 248px 1fr; min-height: 100vh; }
+
+  /* ---- Sidebar ---- */
+  .side { background: var(--surface-card); border-right: var(--rule); display: flex; flex-direction: column; padding: var(--space-5) var(--space-4); gap: var(--space-6); }
+  .brand { display: flex; align-items: baseline; gap: 2px; padding: 0 var(--space-2); }
+  .brand .bm { font-family: var(--font-serif); font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--text-strong); }
+  .brand .bm em { color: var(--accent); font-style: normal; }
+  .brand .bv { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); margin-left: 4px; }
+  .nav { display: flex; flex-direction: column; gap: 2px; }
+  .nav__label { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); padding: var(--space-2) var(--space-2) var(--space-1); }
+  .nav__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-2); border-radius: var(--radius-sm); color: var(--text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); text-decoration: none; cursor: pointer; }
+  .nav__item:hover { background: var(--surface-hover); color: var(--text-strong); }
+  .nav__item.is-active { background: var(--accent-tint); color: var(--accent-text); }
+  .nav__item svg { width: 16px; height: 16px; flex: none; }
+  .side__foot { margin-top: auto; display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2); border-top: var(--rule); padding-top: var(--space-4); }
+  .avatar { width: 30px; height: 30px; border-radius: var(--radius-pill); background: var(--neutral-900); color: var(--neutral-0); display: grid; place-items: center; font-size: var(--text-xs); font-weight: 600; flex: none; }
+  .side__foot .who { font-size: var(--text-sm); color: var(--text-strong); font-weight: 500; line-height: 1.2; }
+  .side__foot .who small { display: block; font-size: var(--text-2xs); color: var(--text-subtle); font-weight: 400; font-family: var(--font-mono); }
+
+  /* ---- Main ---- */
+  .main { display: flex; flex-direction: column; min-width: 0; }
+  .topbar { height: 60px; border-bottom: var(--rule); background: var(--surface-card); display: flex; align-items: center; gap: var(--space-4); padding: 0 var(--space-8); }
+  .crumb { font-size: var(--text-sm); color: var(--text-muted); display: flex; align-items: center; gap: var(--space-2); }
+  .crumb b { color: var(--text-strong); font-weight: 600; }
+  .crumb .sep { color: var(--text-faint); }
+  .search { margin-left: auto; position: relative; }
+  .search input { width: 240px; height: var(--control-sm); }
+  .search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-faint); }
+  .search .awm-input { padding-left: 32px; }
+
+  .content { padding: var(--space-8); max-width: 1080px; width: 100%; }
+  .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .page-head h1 { font-size: var(--text-2xl); font-weight: 700; letter-spacing: var(--tracking-tight); color: var(--text-strong); margin: 0 0 var(--space-2); }
+  .page-head p { margin: 0; font-size: var(--text-sm); color: var(--text-muted); }
+  .head-actions { display: flex; gap: var(--space-3); flex: none; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+  .stat { background: var(--surface-card); border: var(--rule); border-radius: var(--radius-md); padding: var(--space-5); }
+  .stat__k { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 var(--space-3); }
+  .stat__v { font-size: var(--text-3xl); font-weight: 700; letter-spacing: var(--tracking-tight); color: var(--text-strong); line-height: 1; }
+  .stat__d { font-size: var(--text-xs); margin-top: var(--space-2); display: flex; align-items: center; gap: 5px; }
+  .up { color: var(--success); } .down { color: var(--danger); }
+
+  .tabs-row { margin-bottom: var(--space-5); }
+
+  .table-card { background: var(--surface-card); border: var(--rule); border-radius: var(--radius-md); overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-subtle); font-weight: 500; padding: var(--space-3) var(--space-5); border-bottom: var(--rule); background: var(--surface-sunken); }
+  td { padding: var(--space-4) var(--space-5); border-bottom: var(--rule); font-size: var(--text-sm); color: var(--text-body); }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: var(--surface-sunken); }
+  .repo { display: flex; align-items: center; gap: var(--space-3); }
+  .repo b { color: var(--text-strong); font-weight: 600; }
+  .repo small { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-subtle); display: block; }
+  .commit { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); }
+  .when { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-subtle); }
+  .row-x { display: flex; justify-content: flex-end; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="side">
+    <div class="brand"><span class="bm">AW<em>M</em></span><span class="bv">v1</span></div>
+    <nav class="nav">
+      <span class="nav__label">Workspace</span>
+      <a class="nav__item is-active"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg> Projects</a>
+      <a class="nav__item"><svg viewBox="0 0 16 16" fill="none"><path d="M2 13V3M2 13h12M5 10l2.5-3 2 2L13 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Analytics</a>
+      <a class="nav__item"><svg viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h10M3 12h7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Logs</a>
+      <span class="nav__label">Account</span>
+      <a class="nav__item"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.5v2M8 12.5v2M14.5 8h-2M3.5 8h-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Settings</a>
+      <a class="nav__item"><svg viewBox="0 0 16 16" fill="none"><path d="M6 6a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.3M8 11.5h.01" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/></svg> Help</a>
+    </nav>
+    <div class="side__foot">
+      <div class="avatar">AW</div>
+      <div class="who">Alex Worth<small>alex@awm.studio</small></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <header class="topbar">
+      <div class="crumb"><span>Workspace</span><span class="sep">/</span><b>Projects</b></div>
+      <div class="search">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="m11 11 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input class="awm-input" type="search" placeholder="Search projects…">
+      </div>
+      <button class="awm-btn awm-btn--secondary awm-icon-btn" aria-label="Notifications"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6.5a4 4 0 0 1 8 0c0 3 1 4 1 4H3s1-1 1-4ZM6.5 13a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </header>
+
+    <main class="content">
+      <div class="page-head">
+        <div>
+          <h1>Projects</h1>
+          <p>Six active deployments across this workspace.</p>
+        </div>
+        <div class="head-actions">
+          <button class="awm-btn awm-btn--secondary">Import</button>
+          <button class="awm-btn awm-btn--primary"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> New project</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><p class="stat__k">Deploys · 30d</p><div class="stat__v">248</div><div class="stat__d up">▲ 12% vs. prev</div></div>
+        <div class="stat"><p class="stat__k">Avg build</p><div class="stat__v">1<span style="font-size:var(--text-lg);font-weight:600">m</span> 09<span style="font-size:var(--text-lg);font-weight:600">s</span></div><div class="stat__d up">▲ 8s faster</div></div>
+        <div class="stat"><p class="stat__k">Success rate</p><div class="stat__v">99.2<span style="font-size:var(--text-lg);font-weight:600">%</span></div><div class="stat__d down">▼ 0.3%</div></div>
+      </div>
+
+      <div class="tabs-row">
+        <div class="awm-tabs"><div class="awm-tabs__list">
+          <button class="awm-tab is-active">All projects</button>
+          <button class="awm-tab">Production</button>
+          <button class="awm-tab">Preview</button>
+          <button class="awm-tab">Archived</button>
+        </div></div>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead><tr><th>Project</th><th>Status</th><th>Last commit</th><th>Updated</th><th></th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="repo"><div><b>deploy-pipeline</b><small>main · edge</small></div></div></td>
+              <td><span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> Live</span></td>
+              <td class="commit">a1f4c2d · ship v1.4.0</td>
+              <td class="when">2m ago</td>
+              <td><div class="row-x"><button class="awm-btn awm-btn--ghost awm-btn--sm">View</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="repo"><div><b>awm-studio-site</b><small>main · static</small></div></div></td>
+              <td><span class="awm-badge awm-badge--warning">Building</span></td>
+              <td class="commit">7c9e10b · update copy</td>
+              <td class="when">14m ago</td>
+              <td><div class="row-x"><button class="awm-btn awm-btn--ghost awm-btn--sm">View</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="repo"><div><b>notes-api</b><small>main · node</small></div></div></td>
+              <td><span class="awm-badge awm-badge--danger">Failed</span></td>
+              <td class="commit">3bd882f · migrate db</td>
+              <td class="when">1h ago</td>
+              <td><div class="row-x"><button class="awm-btn awm-btn--ghost awm-btn--sm">View</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="repo"><div><b>type-specimen</b><small>preview</small></div></div></td>
+              <td><span class="awm-badge">Idle</span></td>
+              <td class="commit">e02a7f1 · add weights</td>
+              <td class="when">3d ago</td>
+              <td><div class="row-x"><button class="awm-btn awm-btn--ghost awm-btn--sm">View</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
