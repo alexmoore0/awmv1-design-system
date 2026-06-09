@@ -1,4 +1,4 @@
-import { ICON } from './_icons.js';
+import { ICON, esc } from './_icons.js';
 
 export default {
   title: 'Surfaces/Card',
@@ -18,9 +18,9 @@ export default {
   },
   render: (a) =>
     `<div class="awm-card${a.hover ? ' awm-card--hover' : ''}" style="width:340px">
-      <p class="awm-card__eyebrow">${a.eyebrow}</p>
-      <h3 class="awm-card__title${a.serif ? ' awm-card__title--serif' : ''}">${a.title}</h3>
-      <p class="awm-card__body">${a.body}</p>
+      <p class="awm-card__eyebrow">${esc(a.eyebrow)}</p>
+      <h3 class="awm-card__title${a.serif ? ' awm-card__title--serif' : ''}">${esc(a.title)}</h3>
+      <p class="awm-card__body">${esc(a.body)}</p>
     </div>`
 };
 
@@ -35,7 +35,7 @@ export const Badge = {
   },
   args: { label: 'Live', variant: 'success', dot: true },
   render: (a) =>
-    `<span class="awm-badge${a.variant !== 'default' ? ' awm-badge--' + a.variant : ''}">${a.dot ? '<span class="awm-badge__dot"></span> ' : ''}${a.label}</span>`
+    `<span class="awm-badge${a.variant !== 'default' ? ' awm-badge--' + a.variant : ''}">${a.dot ? '<span class="awm-badge__dot"></span> ' : ''}${esc(a.label)}</span>`
 };
 
 export const Tag = {
@@ -46,5 +46,5 @@ export const Tag = {
   },
   args: { label: 'design systems', accent: false, removable: true },
   render: (a) =>
-    `<span class="awm-tag${a.accent ? ' awm-tag--accent' : ''}">${a.label}${a.removable ? ` <span class="awm-tag__x">${ICON.x}</span>` : ''}</span>`
+    `<span class="awm-tag${a.accent ? ' awm-tag--accent' : ''}">${esc(a.label)}${a.removable ? ` <span class="awm-tag__x">${ICON.x}</span>` : ''}</span>`
 };

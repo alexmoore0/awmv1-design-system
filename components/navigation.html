@@ -17,21 +17,21 @@
     <div>
       <p class="cap">Underline tabs</p>
       <div class="awm-tabs">
-        <div class="awm-tabs__list">
-          <button class="awm-tab is-active">Overview</button>
-          <button class="awm-tab">Activity</button>
-          <button class="awm-tab">Settings</button>
-          <button class="awm-tab">Members</button>
+        <div class="awm-tabs__list" role="tablist" aria-label="Project sections">
+          <button class="awm-tab is-active" id="tab-overview" type="button" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
+          <button class="awm-tab" id="tab-activity" type="button" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Activity</button>
+          <button class="awm-tab" id="tab-settings" type="button" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Settings</button>
+          <button class="awm-tab" id="tab-members" type="button" role="tab" aria-selected="false" aria-controls="panel-members" tabindex="-1">Members</button>
         </div>
-        <div class="panel">The selected tab is marked by a 2px accent rule that sits on the shared hairline baseline.</div>
+        <div class="panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">The selected tab is marked by a 2px accent rule that sits on the shared hairline baseline.</div>
       </div>
     </div>
     <div>
       <p class="cap">Segmented control</p>
-      <div class="awm-segmented">
-        <button class="awm-segmented__item is-active">Day</button>
-        <button class="awm-segmented__item">Week</button>
-        <button class="awm-segmented__item">Month</button>
+      <div class="awm-segmented" role="group" aria-label="Date range">
+        <button class="awm-segmented__item is-active" type="button" aria-pressed="true">Day</button>
+        <button class="awm-segmented__item" type="button" aria-pressed="false">Week</button>
+        <button class="awm-segmented__item" type="button" aria-pressed="false">Month</button>
       </div>
     </div>
   </div>

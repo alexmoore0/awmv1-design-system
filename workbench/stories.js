@@ -14,6 +14,12 @@ const ICON = {
 };
 
 const sizeMod = (s) => (s && s !== 'md') ? ` awm-btn--${s}` : '';
+const esc = (value) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;');
 
 const AWM_STORIES = [
   /* ---------------------------------------------------- ACTIONS */
@@ -27,7 +33,7 @@ const AWM_STORIES = [
       block:   { type: 'boolean', default: false },
       disabled:{ type: 'boolean', default: false }
     },
-    render: (a) => `<button class="awm-btn awm-btn--${a.variant}${sizeMod(a.size)}${a.block ? ' awm-btn--block' : ''}"${a.disabled ? ' disabled' : ''}>${a.icon ? ICON.plus + ' ' : ''}${a.label}</button>`
+    render: (a) => `<button class="awm-btn awm-btn--${a.variant}${sizeMod(a.size)}${a.block ? ' awm-btn--block' : ''}"${a.disabled ? ' disabled' : ''}>${a.icon ? ICON.plus + ' ' : ''}${esc(a.label)}</button>`
   },
   {
     id: 'icon-button', name: 'Icon button', group: 'Actions',
@@ -43,7 +49,7 @@ const AWM_STORIES = [
       label: { type: 'text', default: 'full changelog' },
       muted: { type: 'boolean', default: false }
     },
-    render: (a) => `<span style="font-family:var(--font-sans);font-size:var(--text-base);color:var(--text-body)">Read the <a href="#" class="awm-link${a.muted ? ' awm-link--muted' : ''}">${a.label}</a>.</span>`
+    render: (a) => `<span style="font-family:var(--font-sans);font-size:var(--text-base);color:var(--text-body)">Read the <a href="#" class="awm-link${a.muted ? ' awm-link--muted' : ''}">${esc(a.label)}</a>.</span>`
   },
 
   /* ---------------------------------------------------- FORMS */
@@ -59,9 +65,9 @@ const AWM_STORIES = [
       disabled:    { type: 'boolean', default: false }
     },
     render: (a) => `<div class="awm-field" style="max-width:360px">
-  <label class="awm-label">${a.label}${a.required ? ' <span class="awm-req">*</span>' : ''}</label>
-  <input class="awm-input${a.error ? ' is-error' : ''}" type="text" placeholder="${a.placeholder}" value="${a.value}"${a.disabled ? ' disabled' : ''}>
-  ${a.error ? '<span class="awm-error-text">Please enter a valid email.</span>' : (a.hint ? `<span class="awm-hint">${a.hint}</span>` : '')}
+  <label class="awm-label" for="wb-email">${esc(a.label)}${a.required ? ' <span class="awm-req">*</span>' : ''}</label>
+  <input class="awm-input${a.error ? ' is-error' : ''}" id="wb-email" type="email" placeholder="${esc(a.placeholder)}" value="${esc(a.value)}"${a.disabled ? ' disabled' : ''}>
+  ${a.error ? '<span class="awm-error-text">Please enter a valid email.</span>' : (a.hint ? `<span class="awm-hint">${esc(a.hint)}</span>` : '')}
 </div>`
   },
   {
@@ -71,10 +77,10 @@ const AWM_STORIES = [
       placeholder: { type: 'text', default: 'handle' }
     },
     render: (a) => `<div class="awm-field" style="max-width:360px">
-  <label class="awm-label">Username</label>
+  <label class="awm-label" for="wb-username">Username</label>
   <div class="awm-input-group">
-    <span class="awm-affix">${a.affix}</span>
-    <input class="awm-input" type="text" placeholder="${a.placeholder}">
+    <span class="awm-affix">${esc(a.affix)}</span>
+    <input class="awm-input" id="wb-username" type="text" placeholder="${esc(a.placeholder)}">
   </div>
 </div>`
   },
@@ -86,8 +92,8 @@ const AWM_STORIES = [
       disabled:    { type: 'boolean', default: false }
     },
     render: (a) => `<div class="awm-field" style="max-width:360px">
-  <label class="awm-label">${a.label}</label>
-  <textarea class="awm-textarea" placeholder="${a.placeholder}"${a.disabled ? ' disabled' : ''}></textarea>
+  <label class="awm-label" for="wb-notes">${esc(a.label)}</label>
+  <textarea class="awm-textarea" id="wb-notes" placeholder="${esc(a.placeholder)}"${a.disabled ? ' disabled' : ''}></textarea>
 </div>`
   },
   {
@@ -97,8 +103,8 @@ const AWM_STORIES = [
       disabled: { type: 'boolean', default: false }
     },
     render: (a) => `<div class="awm-field" style="max-width:360px">
-  <label class="awm-label">${a.label}</label>
-  <select class="awm-select"${a.disabled ? ' disabled' : ''}>
+  <label class="awm-label" for="wb-visibility">${esc(a.label)}</label>
+  <select class="awm-select" id="wb-visibility"${a.disabled ? ' disabled' : ''}>
     <option>Public</option><option>Unlisted</option><option>Private</option>
   </select>
 </div>`
@@ -109,7 +115,7 @@ const AWM_STORIES = [
       label:   { type: 'text',    default: 'Email me on deploy' },
       checked: { type: 'boolean', default: true }
     },
-    render: (a) => `<label class="awm-check"><input type="checkbox"${a.checked ? ' checked' : ''}><span class="awm-box">${ICON.check}</span> ${a.label}</label>`
+    render: (a) => `<label class="awm-check"><input type="checkbox"${a.checked ? ' checked' : ''}><span class="awm-box">${ICON.check}</span> ${esc(a.label)}</label>`
   },
   {
     id: 'radio', name: 'Radio', group: 'Forms',
@@ -127,7 +133,7 @@ const AWM_STORIES = [
       label: { type: 'text',    default: 'Auto-publish' },
       on:    { type: 'boolean', default: true }
     },
-    render: (a) => `<label class="awm-switch"><input type="checkbox"${a.on ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span> ${a.label}</label>`
+    render: (a) => `<label class="awm-switch"><input type="checkbox"${a.on ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span> ${esc(a.label)}</label>`
   },
 
   /* ---------------------------------------------------- SURFACES */
@@ -141,9 +147,9 @@ const AWM_STORIES = [
       hover:   { type: 'boolean', default: true }
     },
     render: (a) => `<div class="awm-card${a.hover ? ' awm-card--hover' : ''}" style="max-width:360px">
-  <p class="awm-card__eyebrow">${a.eyebrow}</p>
-  <h3 class="awm-card__title${a.serif ? ' awm-card__title--serif' : ''}">${a.title}</h3>
-  <p class="awm-card__body">${a.body}</p>
+  <p class="awm-card__eyebrow">${esc(a.eyebrow)}</p>
+  <h3 class="awm-card__title${a.serif ? ' awm-card__title--serif' : ''}">${esc(a.title)}</h3>
+  <p class="awm-card__body">${esc(a.body)}</p>
 </div>`
   },
   {
@@ -153,7 +159,7 @@ const AWM_STORIES = [
       variant: { type: 'select',  options: ['default','accent','success','warning','danger','ink'], default: 'success' },
       dot:     { type: 'boolean', default: true }
     },
-    render: (a) => `<span class="awm-badge${a.variant !== 'default' ? ' awm-badge--' + a.variant : ''}">${a.dot ? '<span class="awm-badge__dot"></span> ' : ''}${a.label}</span>`
+    render: (a) => `<span class="awm-badge${a.variant !== 'default' ? ' awm-badge--' + a.variant : ''}">${a.dot ? '<span class="awm-badge__dot"></span> ' : ''}${esc(a.label)}</span>`
   },
   {
     id: 'tag', name: 'Tag', group: 'Surfaces',
@@ -162,7 +168,7 @@ const AWM_STORIES = [
       accent:    { type: 'boolean', default: false },
       removable: { type: 'boolean', default: true }
     },
-    render: (a) => `<span class="awm-tag${a.accent ? ' awm-tag--accent' : ''}">${a.label}${a.removable ? ` <span class="awm-tag__x">${ICON.x}</span>` : ''}</span>`
+    render: (a) => `<span class="awm-tag${a.accent ? ' awm-tag--accent' : ''}">${esc(a.label)}${a.removable ? ` <span class="awm-tag__x">${ICON.x}</span>` : ''}</span>`
   },
 
   /* ---------------------------------------------------- NAVIGATION */
@@ -173,8 +179,8 @@ const AWM_STORIES = [
     },
     render: (a) => {
       const items = ['Overview','Activity','Settings','Members'];
-      return `<div class="awm-tabs" style="min-width:420px"><div class="awm-tabs__list">
-  ${items.map(t => `<button class="awm-tab${t === a.active ? ' is-active' : ''}">${t}</button>`).join('\n  ')}
+      return `<div class="awm-tabs" style="min-width:420px"><div class="awm-tabs__list" role="tablist" aria-label="Project sections">
+  ${items.map((t, i) => `<button class="awm-tab${t === a.active ? ' is-active' : ''}" id="wb-tab-${i}" type="button" role="tab" aria-selected="${t === a.active}" aria-controls="wb-panel-${i}"${t === a.active ? '' : ' tabindex="-1"'}>${t}</button>`).join('\n  ')}
 </div></div>`;
     }
   },
@@ -185,8 +191,8 @@ const AWM_STORIES = [
     },
     render: (a) => {
       const items = ['Day','Week','Month'];
-      return `<div class="awm-segmented">
-  ${items.map(t => `<button class="awm-segmented__item${t === a.active ? ' is-active' : ''}">${t}</button>`).join('\n  ')}
+      return `<div class="awm-segmented" role="group" aria-label="Date range">
+  ${items.map(t => `<button class="awm-segmented__item${t === a.active ? ' is-active' : ''}" type="button" aria-pressed="${t === a.active}">${t}</button>`).join('\n  ')}
 </div>`;
     }
   },
@@ -200,15 +206,15 @@ const AWM_STORIES = [
       confirm: { type: 'text', default: 'Delete project' },
       danger:  { type: 'boolean', default: true }
     },
-    render: (a) => `<div class="awm-modal" style="animation:none">
+    render: (a) => `<div class="awm-modal" role="dialog" aria-modal="true" aria-labelledby="wb-modal-title" aria-describedby="wb-modal-body" style="animation:none">
   <div class="awm-modal__header">
-    <h3 class="awm-modal__title">${a.title}</h3>
+    <h3 class="awm-modal__title" id="wb-modal-title">${esc(a.title)}</h3>
     <button class="awm-btn awm-btn--ghost awm-icon-btn awm-btn--sm" aria-label="Close">${ICON.close}</button>
   </div>
-  <div class="awm-modal__body">${a.body}</div>
+  <div class="awm-modal__body" id="wb-modal-body">${esc(a.body)}</div>
   <div class="awm-modal__footer">
     <button class="awm-btn awm-btn--secondary">Cancel</button>
-    <button class="awm-btn awm-btn--${a.danger ? 'danger' : 'primary'}">${a.confirm}</button>
+    <button class="awm-btn awm-btn--${a.danger ? 'danger' : 'primary'}">${esc(a.confirm)}</button>
   </div>
 </div>`
   },
@@ -219,9 +225,9 @@ const AWM_STORIES = [
       msg:    { type: 'text',   default: 'v1.4.0 is live · 1m 12s' },
       status: { type: 'select', options: ['success','danger'], default: 'success' }
     },
-    render: (a) => `<div class="awm-toast">
+    render: (a) => `<div class="awm-toast" role="status" aria-live="polite">
   <span class="awm-toast__icon awm-toast__icon--${a.status}">${a.status === 'success' ? ICON.ok : ICON.warn}</span>
-  <div class="awm-toast__body"><span class="awm-toast__title">${a.title}</span><span class="awm-toast__msg">${a.msg}</span></div>
+  <div class="awm-toast__body"><span class="awm-toast__title">${esc(a.title)}</span><span class="awm-toast__msg">${esc(a.msg)}</span></div>
   <button class="awm-toast__close" aria-label="Dismiss">${ICON.close}</button>
 </div>`
   }

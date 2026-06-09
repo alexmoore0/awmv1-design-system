@@ -1,4 +1,4 @@
-import { ICON } from './_icons.js';
+import { ICON, esc } from './_icons.js';
 
 export default {
   title: 'Feedback/Modal',
@@ -16,15 +16,15 @@ export default {
     confirm: 'Delete project', danger: true
   },
   render: (a) =>
-    `<div class="awm-modal" style="animation:none">
+    `<div class="awm-modal" role="dialog" aria-modal="true" aria-labelledby="sb-modal-title" aria-describedby="sb-modal-body" style="animation:none">
       <div class="awm-modal__header">
-        <h3 class="awm-modal__title">${a.title}</h3>
+        <h3 class="awm-modal__title" id="sb-modal-title">${esc(a.title)}</h3>
         <button class="awm-btn awm-btn--ghost awm-icon-btn awm-btn--sm" aria-label="Close">${ICON.close}</button>
       </div>
-      <div class="awm-modal__body">${a.body}</div>
+      <div class="awm-modal__body" id="sb-modal-body">${esc(a.body)}</div>
       <div class="awm-modal__footer">
         <button class="awm-btn awm-btn--secondary">Cancel</button>
-        <button class="awm-btn awm-btn--${a.danger ? 'danger' : 'primary'}">${a.confirm}</button>
+        <button class="awm-btn awm-btn--${a.danger ? 'danger' : 'primary'}">${esc(a.confirm)}</button>
       </div>
     </div>`
 };
@@ -41,9 +41,9 @@ export const Toast = {
   },
   args: { title: 'Deployed to production', msg: 'v1.4.0 is live · 1m 12s', status: 'success' },
   render: (a) =>
-    `<div class="awm-toast">
+    `<div class="awm-toast" role="status" aria-live="polite">
       <span class="awm-toast__icon awm-toast__icon--${a.status}">${a.status === 'success' ? ICON.ok : ICON.warn}</span>
-      <div class="awm-toast__body"><span class="awm-toast__title">${a.title}</span><span class="awm-toast__msg">${a.msg}</span></div>
+      <div class="awm-toast__body"><span class="awm-toast__title">${esc(a.title)}</span><span class="awm-toast__msg">${esc(a.msg)}</span></div>
       <button class="awm-toast__close" aria-label="Dismiss">${ICON.close}</button>
     </div>`
 };

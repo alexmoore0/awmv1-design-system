@@ -101,6 +101,12 @@
   let args = {};
 
   const el = (id) => document.getElementById(id);
+  const esc = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
   /* ---- build nav ---- */
   function buildNav() {
@@ -133,9 +139,9 @@
       const row = `<div class="wb-ctrl__row"><span class="wb-ctrl__key">${key}</span><span class="wb-ctrl__type">${def.type}</span></div>`;
       let field = '';
       if (def.type === 'text') {
-        field = `<input class="awm-input awm-btn--sm" style="height:var(--control-sm)" data-knob="${key}" value="${(args[key] ?? '').toString().replace(/"/g,'&quot;')}">`;
+        field = `<input class="awm-input awm-btn--sm" style="height:var(--control-sm)" data-knob="${key}" value="${esc(args[key])}">`;
       } else if (def.type === 'select') {
-        field = `<select class="awm-select" style="height:var(--control-sm)" data-knob="${key}">${def.options.map(o => `<option${o === args[key] ? ' selected' : ''}>${o}</option>`).join('')}</select>`;
+        field = `<select class="awm-select" style="height:var(--control-sm)" data-knob="${key}">${def.options.map(o => `<option${o === args[key] ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
       } else if (def.type === 'boolean') {
         field = `<label class="awm-switch" style="margin-top:2px"><input type="checkbox" data-knob="${key}"${args[key] ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span></label>`;
       } else if (def.type === 'number') {

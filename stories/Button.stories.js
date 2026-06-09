@@ -1,4 +1,4 @@
-import { ICON, sizeMod } from './_icons.js';
+import { ICON, esc, sizeMod } from './_icons.js';
 
 export default {
   title: 'Actions/Button',
@@ -14,7 +14,7 @@ export default {
   args: { label: 'Save changes', variant: 'primary', size: 'md', icon: false, block: false, disabled: false },
   render: (a) =>
     `<button class="awm-btn awm-btn--${a.variant}${sizeMod(a.size)}${a.block ? ' awm-btn--block' : ''}"${a.disabled ? ' disabled' : ''}>` +
-    `${a.icon ? ICON.plus + ' ' : ''}${a.label}</button>`
+    `${a.icon ? ICON.plus + ' ' : ''}${esc(a.label)}</button>`
 };
 
 export const Primary   = { args: { variant: 'primary' } };

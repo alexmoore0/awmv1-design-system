@@ -60,7 +60,7 @@ Plain, precise, quietly editorial. Address the reader as "you." Verbs on buttons
 ("Save changes", "Publish"), nouns on labels. Numbers and metadata in mono.
 
 ## Files
-- `readme.md` — full rationale + foundation decisions
+- `README.md` — full rationale + foundation decisions
 - `styles.css`, `tokens/*` — design tokens
 - `components/components.css` — the component library (link this)
 - `components/*.html` — live specimens per group (actions, forms, surfaces, navigation, feedback)

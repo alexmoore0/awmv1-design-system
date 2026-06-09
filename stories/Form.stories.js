@@ -1,4 +1,4 @@
-import { ICON } from './_icons.js';
+import { ICON, esc } from './_icons.js';
 
 export default {
   title: 'Forms/Field',
@@ -19,10 +19,10 @@ export default {
   },
   render: (a) =>
     `<div class="awm-field" style="width:340px">
-      <label class="awm-label">${a.label}${a.required ? ' <span class="awm-req">*</span>' : ''}</label>
-      <input class="awm-input${a.error ? ' is-error' : ''}" type="text" placeholder="${a.placeholder}" value="${a.value}"${a.disabled ? ' disabled' : ''}>
+      <label class="awm-label" for="sb-email">${esc(a.label)}${a.required ? ' <span class="awm-req">*</span>' : ''}</label>
+      <input class="awm-input${a.error ? ' is-error' : ''}" id="sb-email" type="email" placeholder="${esc(a.placeholder)}" value="${esc(a.value)}"${a.disabled ? ' disabled' : ''}>
       ${a.error ? '<span class="awm-error-text">Please enter a valid email.</span>'
-                : (a.hint ? `<span class="awm-hint">${a.hint}</span>` : '')}
+                : (a.hint ? `<span class="awm-hint">${esc(a.hint)}</span>` : '')}
     </div>`
 };
 
@@ -35,8 +35,8 @@ export const Select = {
   args: { label: 'Visibility', disabled: false },
   render: (a) =>
     `<div class="awm-field" style="width:340px">
-      <label class="awm-label">${a.label}</label>
-      <select class="awm-select"${a.disabled ? ' disabled' : ''}><option>Public</option><option>Unlisted</option><option>Private</option></select>
+      <label class="awm-label" for="sb-visibility">${esc(a.label)}</label>
+      <select class="awm-select" id="sb-visibility"${a.disabled ? ' disabled' : ''}><option>Public</option><option>Unlisted</option><option>Private</option></select>
     </div>`
 };
 
@@ -45,8 +45,8 @@ export const Textarea = {
   args: { label: 'Notes', placeholder: 'Optional release notes…' },
   render: (a) =>
     `<div class="awm-field" style="width:340px">
-      <label class="awm-label">${a.label}</label>
-      <textarea class="awm-textarea" placeholder="${a.placeholder}"></textarea>
+      <label class="awm-label" for="sb-notes">${esc(a.label)}</label>
+      <textarea class="awm-textarea" id="sb-notes" placeholder="${esc(a.placeholder)}"></textarea>
     </div>`
 };
 
@@ -54,12 +54,12 @@ export const Checkbox = {
   argTypes: { label: { control: 'text' }, checked: { control: 'boolean' } },
   args: { label: 'Email me on deploy', checked: true },
   render: (a) =>
-    `<label class="awm-check"><input type="checkbox"${a.checked ? ' checked' : ''}><span class="awm-box">${ICON.check}</span> ${a.label}</label>`
+    `<label class="awm-check"><input type="checkbox"${a.checked ? ' checked' : ''}><span class="awm-box">${ICON.check}</span> ${esc(a.label)}</label>`
 };
 
 export const Switch = {
   argTypes: { label: { control: 'text' }, on: { control: 'boolean' } },
   args: { label: 'Auto-publish', on: true },
   render: (a) =>
-    `<label class="awm-switch"><input type="checkbox"${a.on ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span> ${a.label}</label>`
+    `<label class="awm-switch"><input type="checkbox"${a.on ? ' checked' : ''}><span class="awm-track"><span class="awm-thumb"></span></span> ${esc(a.label)}</label>`
 };

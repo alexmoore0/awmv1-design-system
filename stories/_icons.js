@@ -9,3 +9,10 @@ export const ICON = {
 };
 
 export const sizeMod = (s) => (s && s !== 'md') ? ` awm-btn--${s}` : '';
+
+export const esc = (value) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;');

@@ -4,7 +4,50 @@
    Everything reads from semantic token aliases — no raw values here. */
 
 /* ============================================================ RESET-ish */
-.awm *, .awm *::before, .awm *::after { box-sizing: border-box; }
+.awm *,
+.awm *::before,
+.awm *::after,
+.awm-btn,
+.awm-btn::before,
+.awm-btn::after,
+.awm-link,
+.awm-link::before,
+.awm-link::after,
+.awm-field,
+.awm-field::before,
+.awm-field::after,
+.awm-label,
+.awm-hint,
+.awm-error-text,
+.awm-input,
+.awm-textarea,
+.awm-select,
+.awm-input-group,
+.awm-affix,
+.awm-check,
+.awm-check::before,
+.awm-check::after,
+.awm-box,
+.awm-switch,
+.awm-switch::before,
+.awm-switch::after,
+.awm-track,
+.awm-thumb,
+.awm-card,
+.awm-card::before,
+.awm-card::after,
+.awm-badge,
+.awm-tag,
+.awm-tabs,
+.awm-tabs__list,
+.awm-tab,
+.awm-segmented,
+.awm-segmented__item,
+.awm-modal-scrim,
+.awm-modal,
+.awm-toast {
+  box-sizing: border-box;
+}
 
 /* ============================================================ BUTTON */
 .awm-btn {
@@ -24,25 +67,25 @@
 
 /* Primary — the single accent action */
 .awm-btn--primary { background: var(--accent); color: var(--text-on-accent); border-color: var(--accent); }
-.awm-btn--primary:hover:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
-.awm-btn--primary:active:not(:disabled) { background: var(--accent-active); border-color: var(--accent-active); }
+.awm-btn--primary:hover:not(:disabled):not(.is-disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
+.awm-btn--primary:active:not(:disabled):not(.is-disabled) { background: var(--accent-active); border-color: var(--accent-active); }
 
 /* Secondary — bordered, neutral */
 .awm-btn--secondary { background: var(--surface-card); color: var(--text-strong); border-color: var(--border-strong); }
-.awm-btn--secondary:hover:not(:disabled) { background: var(--surface-hover); border-color: var(--neutral-400); }
-.awm-btn--secondary:active:not(:disabled) { background: var(--surface-inset); }
+.awm-btn--secondary:hover:not(:disabled):not(.is-disabled) { background: var(--surface-hover); border-color: var(--neutral-400); }
+.awm-btn--secondary:active:not(:disabled):not(.is-disabled) { background: var(--surface-inset); }
 
 /* Ink — high-emphasis non-accent (stamped) */
 .awm-btn--ink { background: var(--neutral-900); color: var(--text-on-invert); border-color: var(--neutral-900); }
-.awm-btn--ink:hover:not(:disabled) { background: var(--neutral-800); border-color: var(--neutral-800); }
+.awm-btn--ink:hover:not(:disabled):not(.is-disabled) { background: var(--neutral-800); border-color: var(--neutral-800); }
 
 /* Ghost — minimal */
 .awm-btn--ghost { background: transparent; color: var(--text-body); border-color: transparent; }
-.awm-btn--ghost:hover:not(:disabled) { background: var(--surface-hover); color: var(--text-strong); }
+.awm-btn--ghost:hover:not(:disabled):not(.is-disabled) { background: var(--surface-hover); color: var(--text-strong); }
 
 /* Danger */
 .awm-btn--danger { background: var(--danger); color: var(--neutral-0); border-color: var(--danger); }
-.awm-btn--danger:hover:not(:disabled) { background: var(--danger-hover); border-color: var(--danger-hover); }
+.awm-btn--danger:hover:not(:disabled):not(.is-disabled) { background: var(--danger-hover); border-color: var(--danger-hover); }
 
 /* Sizes */
 .awm-btn--sm { height: var(--control-sm); padding: 0 var(--space-3); font-size: var(--text-xs); }
@@ -91,7 +134,7 @@
   background: var(--surface-inset); color: var(--text-faint); cursor: not-allowed;
 }
 .awm-input.is-error, .awm-textarea.is-error, .awm-select.is-error { border-color: var(--danger); }
-.awm-input.is-error:focus { box-shadow: 0 0 0 3px var(--danger-tint); }
+.awm-input.is-error:focus, .awm-textarea.is-error:focus, .awm-select.is-error:focus { box-shadow: 0 0 0 3px var(--danger-tint); }
 
 /* Select chevron */
 .awm-select {
