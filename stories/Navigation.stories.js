@@ -25,3 +25,15 @@ export const Segmented = {
       `</div>`;
   }
 };
+
+export const Breadcrumbs = {
+  title: 'Navigation/Breadcrumbs',
+  render: () =>
+    `<nav class="awm-breadcrumbs" aria-label="Breadcrumb">
+      <a href="#">Workspace</a>
+      <span class="awm-breadcrumbs__sep">/</span>
+      <a href="#">Projects</a>
+      <span class="awm-breadcrumbs__sep">/</span>
+      <span aria-current="page">deploy-pipeline</span>
+    </nav>`
+};

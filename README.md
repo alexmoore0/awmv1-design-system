@@ -13,7 +13,7 @@ hairline rules, restrained color, and type doing most of the brand work.
 - CSS token entry point: `styles.css`
 - Token files for fonts, color, type, spacing, elevation, and motion
 - Component classes under `components/components.css`
-- HTML specimens for actions, forms, surfaces, navigation, and feedback
+- HTML specimens for actions, forms, surfaces, navigation, overlays, data, and feedback
 - UI kit examples for an app surface and editorial site
 - Storybook stories for local documentation and visual review
 - A `SKILL.md` file so the system can be reused as a Codex skill
@@ -115,8 +115,10 @@ useful for quick visual checks without running a dev server.
 | Actions | `.awm-btn`, `.awm-icon-btn`, `.awm-link` | `components/actions.html` |
 | Forms | `.awm-field`, `.awm-input`, `.awm-textarea`, `.awm-select`, `.awm-check`, `.awm-switch` | `components/forms.html` |
 | Surfaces | `.awm-card`, `.awm-badge`, `.awm-tag` | `components/surfaces.html` |
-| Navigation | `.awm-tabs`, `.awm-segmented` | `components/navigation.html` |
-| Feedback | `.awm-modal-scrim`, `.awm-modal`, `.awm-toast` | `components/feedback.html` |
+| Navigation | `.awm-breadcrumbs`, `.awm-tabs`, `.awm-segmented` | `components/navigation.html` |
+| Overlays | `.awm-menu`, `.awm-tooltip` | `components/overlays.html` |
+| Data | `.awm-table`, `.awm-table-wrap`, `.awm-empty` | `components/data.html` |
+| Feedback | `.awm-alert`, `.awm-modal-scrim`, `.awm-modal`, `.awm-toast` | `components/feedback.html` |
 
 ## Design Principles
 

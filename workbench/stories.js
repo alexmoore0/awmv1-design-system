@@ -10,7 +10,10 @@ const ICON = {
   x: '<svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
   close: '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   ok: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 9.2 8 11.5l4.5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  warn: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M9 5v4.5M9 12h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
+  warn: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M9 5v4.5M9 12h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  info: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M9 8v5M9 5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  dots: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h.01M8 8h.01M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  folder: '<svg viewBox="0 0 18 18" fill="none"><path d="M2.5 5.5h5l1.2 1.5h6.8v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>'
 };
 
 const sizeMod = (s) => (s && s !== 'md') ? ` awm-btn--${s}` : '';
@@ -20,6 +23,11 @@ const esc = (value) => String(value ?? '')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;');
+const alertIcon = (variant) => {
+  if (variant === 'success') return ICON.ok;
+  if (variant === 'warning' || variant === 'danger') return ICON.warn;
+  return ICON.info;
+};
 
 const AWM_STORIES = [
   /* ---------------------------------------------------- ACTIONS */
@@ -196,8 +204,115 @@ const AWM_STORIES = [
 </div>`;
     }
   },
+  {
+    id: 'breadcrumbs', name: 'Breadcrumbs', group: 'Navigation',
+    knobs: {
+      current: { type: 'text', default: 'deploy-pipeline' }
+    },
+    render: (a) => `<nav class="awm-breadcrumbs" aria-label="Breadcrumb">
+  <a href="#">Workspace</a>
+  <span class="awm-breadcrumbs__sep">/</span>
+  <a href="#">Projects</a>
+  <span class="awm-breadcrumbs__sep">/</span>
+  <span aria-current="page">${esc(a.current)}</span>
+</nav>`
+  },
+
+  /* ---------------------------------------------------- OVERLAYS */
+  {
+    id: 'menu', name: 'Dropdown menu', group: 'Overlays',
+    knobs: {
+      active: { type: 'boolean', default: true },
+      danger: { type: 'boolean', default: true }
+    },
+    render: (a) => `<div style="display:flex;align-items:flex-start;gap:16px">
+  <button class="awm-btn awm-btn--secondary awm-icon-btn" type="button" aria-haspopup="menu" aria-expanded="true" aria-label="Project actions">${ICON.dots}</button>
+  <div class="awm-menu" role="menu" aria-label="Project actions">
+    <button class="awm-menu__item${a.active ? ' is-active' : ''}" type="button" role="menuitem"><span class="awm-menu__icon">${ICON.info}</span>View details<span class="awm-menu__meta">D</span></button>
+    <button class="awm-menu__item" type="button" role="menuitem"><span class="awm-menu__icon">${ICON.plus}</span>Duplicate</button>
+    <button class="awm-menu__item" type="button" role="menuitem"><span class="awm-menu__icon">${ICON.folder}</span>Archive</button>
+    <div class="awm-menu__sep" role="separator"></div>
+    <button class="awm-menu__item${a.danger ? ' is-danger' : ''}" type="button" role="menuitem"><span class="awm-menu__icon">${ICON.warn}</span>Delete project</button>
+  </div>
+</div>`
+  },
+  {
+    id: 'tooltip', name: 'Tooltip', group: 'Overlays',
+    knobs: {
+      label: { type: 'text', default: 'Copy preview URL' },
+      placement: { type: 'select', options: ['top','bottom','left','right'], default: 'top' }
+    },
+    render: (a) => `<div style="padding:42px">
+  <span class="awm-tooltip awm-tooltip--${a.placement}" role="tooltip">${esc(a.label)}</span>
+</div>`
+  },
+
+  /* ---------------------------------------------------- DATA */
+  {
+    id: 'table', name: 'Table', group: 'Data',
+    knobs: {},
+    render: () => `<div class="awm-table-wrap" style="width:720px">
+  <table class="awm-table">
+    <thead>
+      <tr><th>Project</th><th>Status</th><th>Updated</th><th class="awm-table__numeric">Builds</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="awm-table__cell-main">deploy-pipeline</span><span class="awm-table__cell-meta">main · edge</span></td>
+        <td><span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> Live</span></td>
+        <td>2m ago</td>
+        <td class="awm-table__numeric">248</td>
+      </tr>
+      <tr>
+        <td><span class="awm-table__cell-main">awm-studio-site</span><span class="awm-table__cell-meta">main · static</span></td>
+        <td><span class="awm-badge awm-badge--warning">Building</span></td>
+        <td>14m ago</td>
+        <td class="awm-table__numeric">62</td>
+      </tr>
+      <tr>
+        <td><span class="awm-table__cell-main">notes-api</span><span class="awm-table__cell-meta">main · node</span></td>
+        <td><span class="awm-badge awm-badge--danger">Failed</span></td>
+        <td>1h ago</td>
+        <td class="awm-table__numeric">17</td>
+      </tr>
+    </tbody>
+  </table>
+</div>`
+  },
+  {
+    id: 'empty', name: 'Empty state', group: 'Data',
+    knobs: {
+      title: { type: 'text', default: 'No projects yet' },
+      body: { type: 'text', default: 'Create a project to start tracking builds, preview URLs, and deploy history.' },
+      action: { type: 'text', default: 'New project' }
+    },
+    render: (a) => `<div class="awm-empty" style="width:460px">
+  <div class="awm-empty__icon">${ICON.folder}</div>
+  <h3 class="awm-empty__title">${esc(a.title)}</h3>
+  <p class="awm-empty__body">${esc(a.body)}</p>
+  <div class="awm-empty__actions">
+    <button class="awm-btn awm-btn--primary">${esc(a.action)}</button>
+    <button class="awm-btn awm-btn--secondary">Import</button>
+  </div>
+</div>`
+  },
 
   /* ---------------------------------------------------- FEEDBACK */
+  {
+    id: 'alert', name: 'Alert', group: 'Feedback',
+    knobs: {
+      title: { type: 'text', default: 'Preview deploy ready' },
+      body: { type: 'text', default: 'Review the generated URL before promoting this build to production.' },
+      variant: { type: 'select', options: ['default','accent','success','warning','danger'], default: 'accent' }
+    },
+    render: (a) => `<div class="awm-alert${a.variant !== 'default' ? ' awm-alert--' + a.variant : ''}" role="status">
+  <span class="awm-alert__icon">${alertIcon(a.variant)}</span>
+  <div>
+    <strong class="awm-alert__title">${esc(a.title)}</strong>
+    <p class="awm-alert__body">${esc(a.body)}</p>
+  </div>
+</div>`
+  },
   {
     id: 'modal', name: 'Modal', group: 'Feedback',
     knobs: {

@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" viewport="760x360" subtitle="Dropdown menu + tooltip" name="Overlays" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 32px; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { display: flex; align-items: flex-start; gap: 72px; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0; }
+  .tip-stage { padding: 46px 28px 18px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stack">
+      <p class="cap">Dropdown menu</p>
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <button class="awm-btn awm-btn--secondary awm-icon-btn" type="button" aria-haspopup="menu" aria-expanded="true" aria-label="Project actions">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h.01M8 8h.01M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="awm-menu" role="menu" aria-label="Project actions">
+          <button class="awm-menu__item is-active" type="button" role="menuitem">View details<span class="awm-menu__meta">D</span></button>
+          <button class="awm-menu__item" type="button" role="menuitem">Duplicate</button>
+          <button class="awm-menu__item" type="button" role="menuitem">Archive</button>
+          <div class="awm-menu__sep" role="separator"></div>
+          <button class="awm-menu__item is-danger" type="button" role="menuitem">Delete project</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <p class="cap">Tooltip</p>
+      <div class="tip-stage">
+        <span class="awm-tooltip awm-tooltip--top" role="tooltip">Copy preview URL</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

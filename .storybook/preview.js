@@ -19,7 +19,7 @@ const preview = {
     controls: { expanded: true, sort: 'requiredFirst' },
     options: {
       storySort: {
-        order: ['Foundations', 'Actions', 'Forms', 'Surfaces', 'Navigation', 'Feedback']
+        order: ['Foundations', 'Actions', 'Forms', 'Surfaces', 'Navigation', 'Overlays', 'Data', 'Feedback']
       }
     }
   }

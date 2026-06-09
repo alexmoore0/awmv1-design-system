@@ -43,8 +43,11 @@ should feel like AWMv1. Light mode only.
      (`__title--serif` for editorial)
    - Badges & tags: `.awm-badge` (`--accent | --success | --warning | --danger | --ink`),
      `.awm-tag` (`--accent`, `.awm-tag__x` to remove)
-   - Navigation: `.awm-tabs` underline tabs, `.awm-segmented` segmented control
-   - Feedback: `.awm-modal-scrim` + `.awm-modal`, `.awm-toast`
+   - Navigation: `.awm-breadcrumbs`, `.awm-tabs` underline tabs, `.awm-segmented`
+     segmented control
+   - Overlays: `.awm-menu`, `.awm-menu__item`, `.awm-tooltip`
+   - Data: `.awm-table-wrap`, `.awm-table`, `.awm-empty`
+   - Feedback: `.awm-alert`, `.awm-modal-scrim` + `.awm-modal`, `.awm-toast`
 
 ## Non-negotiable rules
 - **Type carries the brand.** Hierarchy = family + size + weight, not decoration.

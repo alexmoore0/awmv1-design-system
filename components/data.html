@@ -1,0 +1,64 @@
+<!-- @dsCard group="Components" viewport="820x520" subtitle="Reusable data table + empty state" name="Data display" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { display: flex; flex-direction: column; gap: 26px; }
+  .cap { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-subtle); margin: 0 0 12px; }
+  .awm-empty { max-width: 420px; margin: 0 auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <p class="cap">Table</p>
+      <div class="awm-table-wrap">
+        <table class="awm-table">
+          <thead>
+            <tr><th>Project</th><th>Status</th><th>Updated</th><th class="awm-table__numeric">Builds</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="awm-table__cell-main">deploy-pipeline</span><span class="awm-table__cell-meta">main · edge</span></td>
+              <td><span class="awm-badge awm-badge--success"><span class="awm-badge__dot"></span> Live</span></td>
+              <td>2m ago</td>
+              <td class="awm-table__numeric">248</td>
+            </tr>
+            <tr>
+              <td><span class="awm-table__cell-main">awm-studio-site</span><span class="awm-table__cell-meta">main · static</span></td>
+              <td><span class="awm-badge awm-badge--warning">Building</span></td>
+              <td>14m ago</td>
+              <td class="awm-table__numeric">62</td>
+            </tr>
+            <tr>
+              <td><span class="awm-table__cell-main">notes-api</span><span class="awm-table__cell-meta">main · node</span></td>
+              <td><span class="awm-badge awm-badge--danger">Failed</span></td>
+              <td>1h ago</td>
+              <td class="awm-table__numeric">17</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <p class="cap">Empty state</p>
+      <div class="awm-empty">
+        <div class="awm-empty__icon">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M2.5 5.5h5l1.2 1.5h6.8v6.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="awm-empty__title">No projects yet</h3>
+        <p class="awm-empty__body">Create a project to start tracking builds, preview URLs, and deploy history.</p>
+        <div class="awm-empty__actions">
+          <button class="awm-btn awm-btn--primary">New project</button>
+          <button class="awm-btn awm-btn--secondary">Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
