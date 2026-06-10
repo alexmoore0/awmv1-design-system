@@ -13,6 +13,7 @@ hairline rules, restrained color, and type doing most of the brand work.
 - CSS token entry point: `styles.css`
 - Token files for fonts, color, type, spacing, elevation, and motion
 - Component classes under `components/components.css`
+- Typed React component wrappers under `awmv1-design-system/react`
 - HTML specimens for actions, forms, surfaces, navigation, overlays, data, and feedback
 - UI kit examples for an app surface and editorial site
 - Storybook stories for local documentation and visual review
@@ -54,12 +55,29 @@ import 'awmv1-design-system';
 import 'awmv1-design-system/components';
 ```
 
-The package export map includes only the runtime CSS:
+React projects can also import typed wrappers. The wrappers emit the same
+`.awm-*` classes, so keep the CSS imports above in your application entry file:
+
+```tsx
+import { Button, Field, Input } from 'awmv1-design-system/react';
+
+export function ProfileForm() {
+  return (
+    <Field label="Email address" htmlFor="email" hint="Used for build notifications.">
+      <Input id="email" type="email" placeholder="you@example.com" />
+      <Button variant="primary" type="submit">Save changes</Button>
+    </Field>
+  );
+}
+```
+
+The package export map includes runtime CSS and React wrappers:
 
 - `awmv1-design-system` -> `styles.css`
 - `awmv1-design-system/components` -> `components/components.css`
 - `awmv1-design-system/tokens` -> `styles.css`
 - `awmv1-design-system/tokens/<file>.css` -> individual token files
+- `awmv1-design-system/react` -> typed React wrappers for the component classes
 
 Reference materials such as specimens, UI kits, Storybook stories, and the
 workbench remain in the repository.
@@ -101,6 +119,7 @@ useful for quick visual checks without running a dev server.
 | `styles.css` | Global CSS entry point. Keep it import-only. |
 | `tokens/` | Design foundations: fonts, colors, typography, spacing, elevation, motion. |
 | `components/components.css` | Framework-free `.awm-*` component classes. |
+| `src/react/` | Typed React wrappers around the public component classes. |
 | `components/*.html` | Component specimens grouped by category. |
 | `guidelines/*.html` | Foundation specimens for color, type, spacing, radii, elevation, and brand. |
 | `workbench/` | No-build component explorer and markup generator. |

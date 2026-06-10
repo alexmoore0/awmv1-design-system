@@ -14,24 +14,36 @@
   "files": [
     "styles.css",
     "tokens",
-    "components/components.css"
+    "components/components.css",
+    "dist/react"
   ],
   "exports": {
     ".": "./styles.css",
     "./tokens": "./styles.css",
     "./tokens/*": "./tokens/*",
-    "./components": "./components/components.css"
+    "./components": "./components/components.css",
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    }
   },
   "scripts": {
-    "check": "npm pack --dry-run && npm run build-storybook",
+    "build:react": "tsc -p tsconfig.react.json",
+    "check": "npm run build:react && npm pack --dry-run && npm run build-storybook",
     "test": "npm run check",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static"
   },
+  "peerDependencies": {
+    "react": ">=18"
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.0",
     "@storybook/html-vite": "^8.6.0",
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7",
     "storybook": "^8.6.0",
+    "typescript": "^6.0.3",
     "vite": "^5.4.0"
   }
 }

@@ -244,7 +244,7 @@
   background: var(--surface-sunken); border: var(--rule);
 }
 .awm-tag--accent { background: var(--accent-tint); color: var(--accent-text); border-color: var(--accent-tint-2); }
-.awm-tag__x { display: inline-grid; place-items: center; width: 14px; height: 14px; color: var(--text-faint); cursor: pointer; border-radius: var(--radius-pill); }
+.awm-tag__x { appearance: none; display: inline-grid; place-items: center; width: 14px; height: 14px; padding: 0; color: var(--text-faint); cursor: pointer; background: transparent; border: 0; border-radius: var(--radius-pill); }
 .awm-tag__x:hover { color: var(--text-strong); background: var(--neutral-200); }
 
 /* ============================================================ TABS */
